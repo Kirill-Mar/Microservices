@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить/Изменить пользователя</title>
+</head>
+<body>
+<div>
+    <th:block th:include="menuPage">Меню</th:block>
+</div>
+<div>
+    <form th:action="${action}" method="post" th:object="${user}">
+        <fieldset>
+            <legend>Данные пользователя</legend>
+            <p>
+                <input type="hidden" name="id" th:value="${user.id}">
+                <label for="username">Логин:
+                    <input type="text" name="username" id="username" th:value="${user.username}">
+                </label><br>
+                <label for="password">Пароль:
+                    <input type="password" name="password" id="password" th:value="${user.password}">
+                </label><br>
+                <label for="email">Почтовый ящик:
+                    <input type="email" name="email" id="email" th:value="${user.email}">
+                </label><br>
+                <label for="firstName">Имя:
+                    <input type="text" name="firstName" id="firstName" th:value="${user.firstName}">
+                </label><br>
+                <label for="lastName">Фамилия:
+                    <input type="text" name="lastName" id="lastName" th:value="${user.lastName}">
+                </label><br>
+                <label for="roleAdmin">Администратор:
+                    <input type="checkbox" name="roles" id="roleAdmin" value="ADMIN" th:checked="${user.roles.contains('ADMIN')}">
+                </label><br>
+                <label for="roleVIP">VIP:
+                    <input type="checkbox" name="roles" id="roleVIP" value="VIP" th:checked="${user.roles.contains('VIP')}">
+                </label>
+            </p>
+        </fieldset>
+        <button type="submit">Сохранить</button>
+    </form>
+</div>
+</body>
+</html>

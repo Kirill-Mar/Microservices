@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Меню</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .menu-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .menu-container form {
+            margin: 0;
+        }
+        .menu-container button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: normal;
+            letter-spacing: 0.5px;
+        }
+        .menu-container button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<div class="menu-container">
+    <form th:action="@{/login}" method="post" th:unless="${#request.userPrincipal != null}">
+        <button type="submit">Войти</button>
+    </form>
+    <form th:action="@{/logout}" method="post" th:if="${#request.userPrincipal != null}">
+        <button type="submit">Выйти</button>
+    </form>
+    <form th:action="@{/admin/users}">
+        <button type="submit">Вернуться к списку пользователей</button>
+    </form>
+</div>
+</body>
+</html>
