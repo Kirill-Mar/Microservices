@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить пользователя</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        form {
+            margin-top: 20px;
+        }
+        fieldset {
+            border: none;
+        }
+        legend {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+        }
+        input[type="text"],
+        input[type="password"],
+        input[type="email"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Добавить пользователя</h2>
+    <div>
+        <th:block th:include="menuPage">Меню</th:block>
+    </div>
+    <div>
+        <form th:action="@{/admin/add}" method="post" th:object="${user}">
+            <fieldset>
+                <legend>Данные пользователя</legend>
+                <label for="username">Логин:</label>
+                <input type="text" name="username" id="username" th:field="*{username}">
+                <label for="password">Пароль:</label>
+                <input type="password" name="password" id="password" th:field="*{password}">
+                <label for="email">Почтовый ящик:</label>
+                <input type="email" name="email" id="email" th:field="*{email}">
+                <label for="firstName">Имя:</label>
+                <input type="text" name="firstName" id="firstName" th:field="*{firstName}">
+                <label for="lastName">Фамилия:</label>
+                <input type="text" name="lastName" id="lastName" th:field="*{lastName}">
+                <label for="roleAdmin">Администратор:</label>
+                <input type="checkbox" name="roles" id="roleAdmin" value="ROLE_ADMIN">
+                <label for="roleVIP">VIP:</label>
+                <input type="checkbox" name="roles" id="roleVIP" value="ROLE_VIP">
+            </fieldset>
+            <button type="submit">Сохранить пользователя</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

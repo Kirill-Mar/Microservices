@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Страница пользователя</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        table {
+            margin: 0 auto;
+            border-collapse: collapse;
+            width: 50%;
+        }
+        th, td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .menu-container button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: normal;
+            letter-spacing: 0.5px;
+            margin-top: 10px;
+        }
+        .menu-container button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<div class="menu-container">
+
+    <form th:action="@{/logout}" method="post">
+        <button type="submit">Выйти</button>
+    </form>
+</div>
+<div>
+    <h1>Страница пользователя</h1>
+
+    <p id="flashMessage" th:text="${flashMessage}"></p>
+    <table>
+        <tr>
+            <th>Id</th>
+            <td th:text="${user.id}">-</td>
+        </tr>
+        <tr>
+            <th>Логин</th>
+            <td th:text="${user.username}">-</td>
+        </tr>
+        <tr>
+            <th>Пароль</th>
+            <td th:text="${user.password}">-</td>
+        </tr>
+        <tr>
+            <th>Почтовый ящик</th>
+            <td th:text="${user.email}">-</td>
+        </tr>
+        <tr>
+            <th>Имя</th>
+            <td th:text="${user.firstName}">-</td>
+        </tr>
+        <tr>
+            <th>Фамилия</th>
+            <td th:text="${user.lastName}">-</td>
+        </tr>
+    </table>
+</div>
+
+
+<script type="text/javascript">
+    window.onload = function() {
+        setTimeout(function() {
+            var flashMessage = document.getElementById("flashMessage");
+            flashMessage.style.display = "none";
+        }, 2000);
+    };
+</script>
+
+</body>
+</html>
