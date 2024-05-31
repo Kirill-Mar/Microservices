@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:with="lang=${#locale.language}" th:lang="${lang}" lang="ru">
+
+<head th:replace="layouts/main :: htmlhead"/>
+<meta charset="UTF-8">
+</head>
+
+<body style="background-color: aqua;">
+
+<div th:replace="layouts/main :: navigation" />
+
+<div class="container">
+    <div class="row">
+        <div class="col text-center">
+            <h1 class="mt-5">Задача CRUD</h1>
+            <p class="lead">Создайте нового пользователя</p>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <form th:method="POST" th:action="@{/users}" th:object="${user}">
+        <input type="hidden" th:field="*{id}">
+        <div class="form-row">
+            <div class="col-md-6 mb-3">
+                <label for="name">Имя</label>
+                <input type="text" class="form-control" id="name" th:field="*{firstName}" placeholder="Введите имя" required>
+                <div th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"/>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="last_name">Фамилия</label>
+                <input type="text" class="form-control" id="last_name" th:field="*{lastName}" placeholder="Введите фамилию">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-6 mb-3">
+                <label for="email">Электронная почта</label>
+                <input type="text" class="form-control" id="email" th:field="*{email}" placeholder="Введите почту" required>
+                <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"/>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="password">Пароль</label>
+                <input type="password" class="form-control" id="password" th:field="*{password}" placeholder="Введите пароль" required>
+                <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"/>
+            </div>
+        </div>
+
+        <button class="btn btn-secondary" type="submit" th:text="${user.id} ? 'Save' : 'Создать'"/>
+        <a class="btn btn-light border-dark" href="/users">Отмена</a>
+    </form>
+</div>
+
+<div th:replace="layouts/main :: footer"></div>
+</body>
+</html>
